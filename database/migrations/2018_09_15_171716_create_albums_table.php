@@ -17,7 +17,7 @@ class CreateAlbumsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('title');
-            $table->integer('user_Id')->unsigned()
+            $table->integer('user_Id')->unsigned();
         });
     }
 

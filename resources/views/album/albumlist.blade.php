@@ -18,7 +18,7 @@
 
     </head>
     <body>
-        <p>
+        <p style="font-size: 50px;text-align: center;">
             <a class="nav" href="#">Album</a>
         </p>
         <table id="albumdata" class="datatable stripe cell-border hover" cellspacing="0"

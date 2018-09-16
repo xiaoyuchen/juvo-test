@@ -7,7 +7,7 @@ use App\Album;
 use App\Photo;
 
 use GuzzleHttp\Client;
-//require 'vendor\autoload.php';
+use Yajra\Datatables\Datatables;
 
 class AlbumController extends Controller
 {
@@ -181,8 +181,7 @@ class AlbumController extends Controller
 	 */
 	public function albumList()
 	{
-
-		
+        
 		return view('album.albumlist');
 	}
     
@@ -194,10 +193,30 @@ class AlbumController extends Controller
 	 */
 	public function photoList($albumId)
 	{
-
-		
-		return view('album.photolist');
+		return view('album.photolist',['albumid' => $albumId]);
 	}
     
     
+    /**
+	 * Get all albums data
+	 *
+	 * 
+	 * @return datatable object wrapped album data
+	 */
+    public function albumsData (){
+        $albums = Album::all();
+        return Datatables::of($albums)->make();
+    }
+    
+    /**
+	 * Get all photos belong to given album
+	 *
+	 * @param  int  $albumId
+	 * @return datatable object wrapped photo data
+	 */
+    public function photosData ($albumId){
+        $album = Album::find($albumId);
+        $photos = $album -> photos();
+        return Datatables::of($photos)->make();
+    }
 }
